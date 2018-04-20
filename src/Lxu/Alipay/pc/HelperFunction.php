@@ -45,16 +45,8 @@ class HelperFunction {
      * return 拼接完成以后的字符串
      */
     public static function createLinkstring($para) {
-        $arg  = "";
-        foreach($para as $key => $val) {
-        	$arg.=$key."=".$val."&";
-		}
-//        while (list ($key, $val) = each ($para)) {
-//            $arg.=$key."=".$val."&";
-//        }
-        //去掉最后一个&字符
-		$arg = substr($arg, -1);
-//        $arg = substr($arg,0,count($arg)-2);
+    	$arg = http_build_query($para);
+    	$arg = urldecode($arg);
 
         //如果存在转义字符，那么去掉转义
         if(get_magic_quotes_gpc()){$arg = stripslashes($arg);}
@@ -82,13 +74,10 @@ class HelperFunction {
     public static function paraFilter($para) {
         $para_filter = array();
         foreach($para as $key => $val) {
-			if($key == "sign" || $key == "sign_type" || $val == "")continue;
-			else	$para_filter[$key] = $para[$key];
+			if($key == 'sign' || $key == 'sign_type' || $val == '')continue;
+			else $para_filter[$key] = $para[$key];
 		}
-//        while (list ($key, $val) = each ($para)) {
-//            if($key == "sign" || $key == "sign_type" || $val == "")continue;
-//            else	$para_filter[$key] = $para[$key];
-//        }
+
         return $para_filter;
     }
     /**
@@ -196,7 +185,7 @@ class HelperFunction {
      */
     public static function charsetDecode($input,$_input_charset ,$_output_charset) {
         $output = "";
-        if(!isset($_input_charset) )$_input_charset  = $_input_charset ;
+        if(!isset($_input_charset) )$_input_charset  = $_output_charset ;
         if($_input_charset == $_output_charset || $input ==null ) {
             $output = $input;
         } elseif (function_exists("mb_convert_encoding")) {
