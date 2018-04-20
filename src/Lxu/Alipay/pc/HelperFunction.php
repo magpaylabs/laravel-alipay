@@ -53,7 +53,8 @@ class HelperFunction {
 //            $arg.=$key."=".$val."&";
 //        }
         //去掉最后一个&字符
-        $arg = substr($arg,0,count($arg)-2);
+		$arg = substr($arg, -1);
+//        $arg = substr($arg,0,count($arg)-2);
 
         //如果存在转义字符，那么去掉转义
         if(get_magic_quotes_gpc()){$arg = stripslashes($arg);}
@@ -74,7 +75,8 @@ class HelperFunction {
 //            $arg.=$key."=".urlencode($val)."&";
 //        }
         //去掉最后一个&字符
-        $arg = substr($arg,0,count($arg)-2);
+		$arg = substr($arg, -1);
+//        $arg = substr($arg,0,count($arg)-2);
 
         //如果存在转义字符，那么去掉转义
         if(get_magic_quotes_gpc()){$arg = stripslashes($arg);}
