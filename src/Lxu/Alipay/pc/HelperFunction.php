@@ -46,9 +46,12 @@ class HelperFunction {
      */
     public static function createLinkstring($para) {
         $arg  = "";
-        while (list ($key, $val) = each ($para)) {
-            $arg.=$key."=".$val."&";
-        }
+        foreach($para as $key => $val) {
+        	$arg.=$key."=".$val."&";
+		}
+//        while (list ($key, $val) = each ($para)) {
+//            $arg.=$key."=".$val."&";
+//        }
         //去掉最后一个&字符
         $arg = substr($arg,0,count($arg)-2);
 
@@ -64,9 +67,12 @@ class HelperFunction {
      */
     public static function createLinkstringUrlencode($para) {
         $arg  = "";
-        while (list ($key, $val) = each ($para)) {
-            $arg.=$key."=".urlencode($val)."&";
-        }
+        foreach ($para as $key => $val) {
+        	$arg.=$key."=".urlencode($val)."&";
+		}
+//        while (list ($key, $val) = each ($para)) {
+//            $arg.=$key."=".urlencode($val)."&";
+//        }
         //去掉最后一个&字符
         $arg = substr($arg,0,count($arg)-2);
 
@@ -82,10 +88,14 @@ class HelperFunction {
      */
     public static function paraFilter($para) {
         $para_filter = array();
-        while (list ($key, $val) = each ($para)) {
-            if($key == "sign" || $key == "sign_type" || $val == "")continue;
-            else	$para_filter[$key] = $para[$key];
-        }
+        foreach($para as $key => $val) {
+			if($key == "sign" || $key == "sign_type" || $val == "")continue;
+			else	$para_filter[$key] = $para[$key];
+		}
+//        while (list ($key, $val) = each ($para)) {
+//            if($key == "sign" || $key == "sign_type" || $val == "")continue;
+//            else	$para_filter[$key] = $para[$key];
+//        }
         return $para_filter;
     }
     /**
