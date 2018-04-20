@@ -1,9 +1,9 @@
 {
-    "name": "laravel-alipay/alipay",
+    "name": "magpaylabs/alipay",
     "type": "library",
     "description": "支付宝SDK在Laravel5封装包。",
     "keywords": ["Laravel 5", "Laravel", "Alipay", "Alipay SDK"],
-    "homepage": "https://github.com/gaoxuxu123/laravel-alipay",
+    "homepage": "https://github.com/magpaylabs/laravel-alipay",
     "license": "MIT",
     "authors": [
         {
