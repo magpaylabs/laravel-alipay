@@ -178,16 +178,16 @@ class PcSdk {
      * 针对notify_url验证消息是否是支付宝发出的合法消息
      * @return 验证结果
      */
-    public function verifyNotify(){
-        if(empty($_POST)) {//判断POST来的数组是否为空
+    public function verifyNotify($fields){
+        if(empty($fields)) {//判断POST来的数组是否为空
             return false;
         }
         else {
             //生成签名结果
-            $isSign = $this->getSignVeryfy($_POST, $_POST["sign"]);
+            $isSign = $this->getSignVeryfy($fields, $fields["sign"]);
             //获取支付宝远程服务器ATN结果（验证是否是支付宝发来的消息）
             $responseTxt = 'true';
-            if (! empty($_POST["notify_id"])) {$responseTxt = $this->getResponse($_POST["notify_id"]);}
+            if (! empty($fields["notify_id"])) {$responseTxt = $this->getResponse($fields["notify_id"]);}
 
             //写日志记录
             //if ($isSign) {
